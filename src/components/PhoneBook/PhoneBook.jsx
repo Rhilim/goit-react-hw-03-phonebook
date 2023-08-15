@@ -2,13 +2,15 @@ import React from 'react';
 import { Formik } from 'formik';
 import { nanoid } from 'nanoid';
 import {
+  StyledBtnReset,
   StyledButton,
   StyledError,
   StyledField,
   StyledForm,
+  Wrapper,
 } from 'components/PhoneBook/PhoneBook.styled';
 
-export const PhoneBook = ({ onAdd }) => {
+export const PhoneBook = ({ onAdd, onReset }) => {
   return (
     <>
       <Formik
@@ -42,13 +44,16 @@ export const PhoneBook = ({ onAdd }) => {
           <StyledField
             type="tel"
             name="number"
-            placeholder="please enter tel here"
+            placeholder="123456789"
             pattern="\+?\d{1,4}?[ .\-\s]?\(?\d{1,3}?\)?[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,4}[ .\-\s]?\d{1,9}"
             title="Phone number must be digits and can contain spaces, dashes, parentheses and can start with +"
             required
           ></StyledField>
 
+          <Wrapper>
           <StyledButton type="submit">Add contact</StyledButton>
+          <StyledBtnReset onClick={onReset} type="button" >Delete all contacts</StyledBtnReset>
+          </Wrapper>
         </StyledForm>
       </Formik>
     </>

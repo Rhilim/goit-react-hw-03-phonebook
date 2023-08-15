@@ -1,7 +1,6 @@
 import { StyledDeleteBtn, StyledList } from "./Contacts.styled";
 
 export const Contacts = ({ array, onDelete }) => {
-    console.log(array)
   return (
     <>
       <StyledList>

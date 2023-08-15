@@ -6,12 +6,7 @@ import { StyledTitle } from './PhoneBook/PhoneBook.styled';
 
 export class App extends Component {
   state = {
-    contacts: [
-      { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
-      { id: 'id-2', name: 'Hermione Kline', number: '443-89-12' },
-      { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
-      { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
-    ],
+    contacts: [],
     filter: '',
   };
 
@@ -35,15 +30,35 @@ export class App extends Component {
 
   handleDelete = contactId => {
     this.setState(prevState => {
-      
       return {
         contacts: prevState.contacts.filter(
           contact => contact.id !== contactId
         ),
-        
       };
     });
   };
+
+  resetContacts =() => {
+    this.setState({contacts: []})
+  }
+
+  componentDidMount() {
+    const storedContacts = localStorage.getItem('phone-contacts');
+  
+    if(storedContacts !== null) {
+      this.setState({contacts: JSON.parse(storedContacts)})
+    }
+  }
+
+  componentDidUpdate(prevProps, prevState) {
+    if (this.state.contacts !== prevState.contacts) {
+  
+      localStorage.setItem(
+        'phone-contacts',
+        JSON.stringify(this.state.contacts)
+      );
+    }
+  }
 
   render() {
     const { contacts, filter } = this.state;
@@ -55,7 +70,7 @@ export class App extends Component {
     return (
       <>
         <StyledTitle>Phonebook</StyledTitle>
-        <PhoneBook onAdd={this.addName} />
+        <PhoneBook onAdd={this.addName} onReset={this.resetContacts}/>
         <StyledTitle>Contacts</StyledTitle>
         <Filter filter={filter} onChangeFilter={this.changeFilter} />
         <Contacts array={visibleNames} onDelete={this.handleDelete} />

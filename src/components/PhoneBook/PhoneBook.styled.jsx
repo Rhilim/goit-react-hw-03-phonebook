@@ -22,8 +22,11 @@ background-color: skyblue;
 `
 
 export const StyledButton = styled.button`
+display: flex;
+justify-content: space-around;
+align-items: center;
 padding: 4px;
-width: 115px;
+width: 120px;
 background-color: #1E90FF;
 color: #fff;
 border: none;
@@ -34,8 +37,11 @@ border-radius: 4px;
 `
 
 export const StyledBtnReset = styled.button`
+display: flex;
+justify-content: space-around;
+align-items: center;
 padding: 4px;
-width: 115px;
+width: 120px;
 background-color: red;
 color: #fff;
 border: none;
@@ -52,6 +58,10 @@ font-size: 14px;
 
 export const Wrapper = styled.div`
 display: flex;
-gap: 20px;
+gap: 18px;
+`
 
+export const StyledLabel = styled.label`
+font-size: 1.5em;
+font-weight: bold;
 `

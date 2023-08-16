@@ -7,8 +7,10 @@ import {
   StyledError,
   StyledField,
   StyledForm,
+  StyledLabel,
   Wrapper,
 } from 'components/PhoneBook/PhoneBook.styled';
+import { AiOutlineDelete, AiOutlinePlusCircle } from 'react-icons/ai';
 
 export const PhoneBook = ({ onAdd, onReset }) => {
   return (
@@ -26,7 +28,7 @@ export const PhoneBook = ({ onAdd, onReset }) => {
         }}
       >
         <StyledForm>
-          <label> Name </label>
+          <StyledLabel> Name </StyledLabel>
           <StyledField
             id="firstName"
             placeholder="Jane Smith"
@@ -40,7 +42,7 @@ export const PhoneBook = ({ onAdd, onReset }) => {
             required
           ></StyledField>
           <StyledError name="name" component="div" />
-          <label> Number </label>
+          <StyledLabel> Number </StyledLabel>
           <StyledField
             type="tel"
             name="number"
@@ -51,8 +53,14 @@ export const PhoneBook = ({ onAdd, onReset }) => {
           ></StyledField>
 
           <Wrapper>
-          <StyledButton type="submit">Add contact</StyledButton>
-          <StyledBtnReset onClick={onReset} type="button" >Delete all contacts</StyledBtnReset>
+            <StyledButton type="submit">
+              <AiOutlinePlusCircle size={25} />
+              Add contact
+            </StyledButton>
+            <StyledBtnReset onClick={onReset} type="button">
+              <AiOutlineDelete size={25} />
+              Delete all contacts
+            </StyledBtnReset>
           </Wrapper>
         </StyledForm>
       </Formik>
